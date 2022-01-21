@@ -49,6 +49,7 @@ public abstract class BaseWxCpServiceImpl<H, P> implements WxCpService, RequestH
   private WxCpTagService tagService = new WxCpTagServiceImpl(this);
   private WxCpAgentService agentService = new WxCpAgentServiceImpl(this);
   private WxCpOaService oaService = new WxCpOaServiceImpl(this);
+  private WxCpLivingService livingService = new WxCpLivingServiceImpl(this);
   private WxCpTaskCardService taskCardService = new WxCpTaskCardServiceImpl(this);
   private WxCpExternalContactService externalContactService = new WxCpExternalContactServiceImpl(this);
   private WxCpGroupRobotService groupRobotService = new WxCpGroupRobotServiceImpl(this);
@@ -56,6 +57,7 @@ public abstract class BaseWxCpServiceImpl<H, P> implements WxCpService, RequestH
   private WxCpOaCalendarService oaCalendarService = new WxCpOaCalendarServiceImpl(this);
   private WxCpOaScheduleService oaScheduleService = new WxCpOaOaScheduleServiceImpl(this);
   private WxCpAgentWorkBenchService workBenchService = new WxCpAgentWorkBenchServiceImpl(this);
+  private WxCpKfService kfService = new WxCpKfServiceImpl(this);
 
   /**
    * 全局的是否正在刷新access token的锁.
@@ -478,6 +480,11 @@ public abstract class BaseWxCpServiceImpl<H, P> implements WxCpService, RequestH
   }
 
   @Override
+  public WxCpLivingService getLivingService() {
+    return livingService;
+  }
+
+  @Override
   public WxCpOaCalendarService getOaCalendarService() {
     return this.oaCalendarService;
   }
@@ -549,5 +556,15 @@ public abstract class BaseWxCpServiceImpl<H, P> implements WxCpService, RequestH
   @Override
   public WxCpOaScheduleService getOaScheduleService() {
     return this.oaScheduleService;
+  }
+
+  @Override
+  public WxCpKfService getKfService() {
+    return kfService;
+  }
+
+  @Override
+  public void setKfService(WxCpKfService kfService) {
+    this.kfService = kfService;
   }
 }
