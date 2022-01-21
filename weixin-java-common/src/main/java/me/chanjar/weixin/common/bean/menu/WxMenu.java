@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
 
@@ -17,8 +19,9 @@ import me.chanjar.weixin.common.util.json.WxGsonBuilder;
  */
 @Data
 public class WxMenu implements Serializable {
-  private static final long serialVersionUID = -7083914585539687746L;
+  private static final long serialVersionUID = -5387798973561559257L;
 
+  @JSONField(name="button")
   private List<WxMenuButton> buttons = new ArrayList<>();
 
   private WxMenuRule matchRule;
@@ -41,7 +44,7 @@ public class WxMenu implements Serializable {
   }
 
   public String toJson() {
-    return WxGsonBuilder.create().toJson(this);
+    return JSONObject.toJSONString(this);
   }
 
   @Override

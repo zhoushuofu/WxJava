@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import me.chanjar.weixin.common.util.json.WxGsonBuilder;
@@ -15,7 +17,7 @@ import me.chanjar.weixin.common.util.json.WxGsonBuilder;
  */
 @Data
 public class WxMenuButton implements Serializable {
-  private static final long serialVersionUID = -1070939403109776555L;
+  private static final long serialVersionUID = -91343401353563235L;
 
   /**
    * <pre>
@@ -55,15 +57,17 @@ public class WxMenuButton implements Serializable {
    * media_id类型和view_limited类型必须
    * </pre>
    */
+  @JSONField(name = "media_id")
   @SerializedName("media_id")
   private String mediaId;
-  
+
     /**
    * <pre>
    * 调用发布接口返回的article_id.
    * article_id类型和article_view_limited类型必须
    * </pre>
    */
+  @JSONField(name = "article_id")
   @SerializedName("article_id")
   private String articleId;
 
@@ -74,6 +78,7 @@ public class WxMenuButton implements Serializable {
    * </pre>
    */
   @SerializedName("appid")
+  @JSONField(name = "appid")
   private String appId;
 
   /**
@@ -83,14 +88,16 @@ public class WxMenuButton implements Serializable {
    * </pre>
    */
   @SerializedName("pagepath")
+  @JSONField(name = "pagepath")
   private String pagePath;
 
   @SerializedName("sub_button")
+  @JSONField(name = "sub_button")
   private List<WxMenuButton> subButtons = new ArrayList<>();
 
   @Override
   public String toString() {
-    return WxGsonBuilder.create().toJson(this);
+    return JSONObject.toJSONString(this);
   }
 
 }
