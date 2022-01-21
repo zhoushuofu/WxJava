@@ -57,6 +57,15 @@ public class WxMenuButton implements Serializable {
    */
   @SerializedName("media_id")
   private String mediaId;
+  
+    /**
+   * <pre>
+   * 调用发布接口返回的article_id.
+   * article_id类型和article_view_limited类型必须
+   * </pre>
+   */
+  @SerializedName("article_id")
+  private String articleId;
 
   /**
    * <pre>
