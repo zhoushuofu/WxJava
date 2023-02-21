@@ -17,7 +17,7 @@
   <tr>
     <td align="center" valign="middle" colspan="3">
       <a href="http://www.ccflow.org/?from=wxjava" target="_blank">
-        <img height="120" src="https://gitee.com/public-res/wx-java-images/raw/main/banners/ccflow.png" alt="ccflow">
+        <img height="120" src="https://ccfast.cc/AD/ccflow2.png" alt="ccflow">
       </a>
     </td>
   </tr>
