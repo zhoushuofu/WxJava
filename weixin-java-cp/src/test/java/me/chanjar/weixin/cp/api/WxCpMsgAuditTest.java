@@ -10,8 +10,8 @@ import me.chanjar.weixin.cp.bean.msgaudit.*;
 import me.chanjar.weixin.cp.config.WxCpConfigStorage;
 import me.chanjar.weixin.cp.constant.WxCpConsts;
 import me.chanjar.weixin.cp.demo.WxCpDemoInMemoryConfigStorage;
+import me.chanjar.weixin.cp.util.json.WxCpGsonBuilder;
 import me.chanjar.weixin.cp.util.xml.XStreamTransformer;
-import org.eclipse.jetty.util.ajax.JSON;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -73,7 +73,7 @@ public class WxCpMsgAuditTest {
 
     final WxCpXmlMessage msgAuditApprovedXmlMsg = XStreamTransformer.fromXml(WxCpXmlMessage.class, msgAuditApprovedXml);
     msgAuditApprovedXmlMsg.setAllFieldsMap(XmlUtils.xml2Map(msgAuditApprovedXml));
-    log.info("msgAuditApprovedXmlMsg:{}", JSON.toString(msgAuditApprovedXmlMsg));
+    log.info("msgAuditApprovedXmlMsg:{}", WxCpGsonBuilder.create().toJson(msgAuditApprovedXmlMsg));
 
     /*
      * 产生会话回调事件
@@ -93,7 +93,7 @@ public class WxCpMsgAuditTest {
 
     final WxCpXmlMessage msgAuditNotifyXmlMsg = XStreamTransformer.fromXml(WxCpXmlMessage.class, msgAuditNotifyXml);
     msgAuditNotifyXmlMsg.setAllFieldsMap(XmlUtils.xml2Map(msgAuditNotifyXml));
-    log.info("msgAuditNotifyXmlMsg:{}", JSON.toString(msgAuditNotifyXmlMsg));
+    log.info("msgAuditNotifyXmlMsg:{}", WxCpGsonBuilder.create().toJson(msgAuditNotifyXmlMsg));
 
     /*
      * 增加变更事件类型：产生会话回调事件
