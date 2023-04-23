@@ -129,7 +129,7 @@ public abstract class BaseWxCpTpServiceImpl<H, P> implements WxCpTpService, Requ
   public String getSuiteTicket() throws WxErrorException {
     if (this.configStorage.isSuiteTicketExpired()) {
       // 本地suite ticket 不存在或者过期
-      WxError wxError = WxError.fromJson("{\"errcode\":40085, \"errmsg\":\"invaild suite ticket\"}", WxType.CP);
+      WxError wxError = WxError.fromJson("{\"errcode\":40085, \"errmsg\":\"invalid suite ticket\"}", WxType.CP);
       throw new WxErrorException(wxError);
     }
     return this.configStorage.getSuiteTicket();
