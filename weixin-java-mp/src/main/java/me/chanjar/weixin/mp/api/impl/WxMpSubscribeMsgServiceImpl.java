@@ -24,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.util.List;
 
+import static me.chanjar.weixin.common.api.WxConsts.ERR_CODE;
 import static me.chanjar.weixin.mp.enums.WxMpApiUrl.SubscribeMsg.*;
 
 /**

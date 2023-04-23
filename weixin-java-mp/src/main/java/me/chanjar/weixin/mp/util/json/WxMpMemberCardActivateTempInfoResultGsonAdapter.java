@@ -1,6 +1,7 @@
 package me.chanjar.weixin.mp.util.json;
 
 import com.google.gson.*;
+import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.util.json.GsonHelper;
 import me.chanjar.weixin.mp.bean.card.membercard.MemberCardUserInfo;
 import me.chanjar.weixin.mp.bean.card.membercard.NameValues;
