@@ -22,7 +22,7 @@ public class WxMpMemberCardActivateTempInfoResultGsonAdapter implements JsonDese
 
     JsonObject jsonObject = jsonElement.getAsJsonObject();
 
-    result.setErrorCode(GsonHelper.getString(jsonObject, "errcode"));
+    result.setErrorCode(GsonHelper.getString(jsonObject, WxConsts.ERR_CODE));
     result.setErrorMsg(GsonHelper.getString(jsonObject, "errmsg"));
 
     JsonObject userInfoJsonObject = jsonObject.getAsJsonObject("info");

@@ -161,7 +161,7 @@ public class WxMpCardServiceImpl implements WxMpCardService {
 
     // 判断返回值
     JsonObject json = GsonParser.parse(responseContent);
-    String errcode = json.get("errcode").getAsString();
+    String errcode = json.get(WxConsts.ERR_CODE).getAsString();
     if (!"0".equals(errcode)) {
       String errmsg = json.get("errmsg").getAsString();
       throw new WxErrorException(WxError.builder()

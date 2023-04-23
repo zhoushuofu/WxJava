@@ -27,7 +27,7 @@ public class WxMpMemberCardUpdateResultGsonAdapter implements JsonDeserializer<W
     JsonObject jsonObject = jsonElement.getAsJsonObject();
 
     result.setOpenId(GsonHelper.getString(jsonObject, "openid"));
-    result.setErrorCode(GsonHelper.getString(jsonObject, "errcode"));
+    result.setErrorCode(GsonHelper.getString(jsonObject, WxConsts.ERR_CODE));
     result.setErrorMsg(GsonHelper.getString(jsonObject, "errmsg"));
     result.setResultBalance(GsonHelper.getDouble(jsonObject, "result_balance"));
     result.setResultBonus(GsonHelper.getInteger(jsonObject, "result_bonus"));

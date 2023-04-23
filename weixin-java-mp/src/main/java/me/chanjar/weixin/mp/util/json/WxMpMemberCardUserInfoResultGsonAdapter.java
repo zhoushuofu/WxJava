@@ -31,7 +31,7 @@ public class WxMpMemberCardUserInfoResultGsonAdapter implements JsonDeserializer
     JsonObject jsonObject = jsonElement.getAsJsonObject();
 
     result.setOpenId(getString(jsonObject, "openid"));
-    result.setErrorCode(getString(jsonObject, "errcode"));
+    result.setErrorCode(getString(jsonObject, WxConsts.ERR_CODE));
     result.setErrorMsg(getString(jsonObject, "errmsg"));
     result.setNickname(getString(jsonObject, "nickname"));
     result.setMembershipNumber(getString(jsonObject, "membership_number"));

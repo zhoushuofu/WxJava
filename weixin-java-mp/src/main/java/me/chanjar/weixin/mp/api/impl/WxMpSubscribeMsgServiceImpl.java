@@ -34,7 +34,6 @@ import static me.chanjar.weixin.mp.enums.WxMpApiUrl.SubscribeMsg.*;
  */
 @RequiredArgsConstructor
 public class WxMpSubscribeMsgServiceImpl implements WxMpSubscribeMsgService {
-  private static final String ERR_CODE = "errcode";
   private final WxMpService service;
 
   @Override
