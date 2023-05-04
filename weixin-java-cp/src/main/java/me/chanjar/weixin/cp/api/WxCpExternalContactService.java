@@ -1078,6 +1078,7 @@ public interface WxCpExternalContactService {
   /**
    * <pre>
    * 修改敏感词规则
+   * <a href="https://developer.work.weixin.qq.com/document/path/95097#%E4%BF%AE%E6%94%B9%E6%95%8F%E6%84%9F%E8%AF%8D%E8%A7%84%E5%88%99">文档地址</a>
    * 企业和第三方应用可以通过此接口修改敏感词规则
    * 请求方式：POST(HTTPS)
    * 请求地址：https://qyapi.weixin.qq.com/cgi-bin/externalcontact/update_intercept_rule?access_token=ACCESS_TOKEN
