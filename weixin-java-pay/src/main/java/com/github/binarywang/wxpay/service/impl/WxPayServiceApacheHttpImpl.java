@@ -2,13 +2,12 @@ package com.github.binarywang.wxpay.service.impl;
 
 import com.github.binarywang.wxpay.bean.WxPayApiData;
 import com.github.binarywang.wxpay.exception.WxPayException;
+import com.github.binarywang.wxpay.v3.WxPayV3DownloadHttpGet;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import me.chanjar.weixin.common.util.json.GsonParser;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpStatus;
+import org.apache.http.*;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
@@ -28,6 +27,7 @@ import javax.net.ssl.SSLContext;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Objects;
 
 /**
  * <pre>
@@ -257,15 +257,20 @@ public class WxPayServiceApacheHttpImpl extends BaseWxPayServiceImpl {
   @Override
   public InputStream downloadV3(String url) throws WxPayException {
     CloseableHttpClient httpClient = this.createApiV3HttpClient();
-    HttpGet httpGet = new HttpGet(url);
+    HttpGet httpGet = new WxPayV3DownloadHttpGet(url);
     httpGet.addHeader("Accept", ContentType.WILDCARD.getMimeType());
     try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
       //v3已经改为通过状态码判断200 204 成功
       int statusCode = response.getStatusLine().getStatusCode();
-      if (HttpStatus.SC_OK == statusCode || HttpStatus.SC_NO_CONTENT == statusCode) {
+      Header contentType = response.getFirstHeader(HttpHeaders.CONTENT_TYPE);
+      boolean isJsonContentType = Objects.nonNull(contentType) &&
+        ContentType.APPLICATION_JSON.getMimeType().equals(ContentType.parse(String.valueOf(contentType.getValue())).getMimeType());
+      if ((HttpStatus.SC_OK == statusCode || HttpStatus.SC_NO_CONTENT == statusCode)
+          && !isJsonContentType) {
         this.log.info("\n【请求地址】：{}\n", url);
         return response.getEntity().getContent();
       } else {
+        //response里的header有content-type=json说明返回了错误信息
         //有错误提示信息返回
         String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
         JsonObject jsonObject = GsonParser.parse(responseString);
