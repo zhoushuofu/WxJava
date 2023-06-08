@@ -5,6 +5,8 @@ import lombok.Getter;
 
 /**
  * 支付方式
+ *
+ * @author thinsstar
  */
 @Getter
 @AllArgsConstructor
