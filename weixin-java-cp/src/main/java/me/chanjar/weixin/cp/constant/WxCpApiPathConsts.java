@@ -801,11 +801,11 @@ public interface WxCpApiPathConsts {
     /**
      * The constant GET_USERINFO3RD.
      */
-    String GET_USERINFO3RD = "/cgi-bin/service/getuserinfo3rd";
+    String GET_USERINFO3RD = "/cgi-bin/service/auth/getuserinfo3rd";
     /**
      * The constant GET_USERDETAIL3RD.
      */
-    String GET_USERDETAIL3RD = "/cgi-bin/service/getuserdetail3rd";
+    String GET_USERDETAIL3RD = "/cgi-bin/service/auth/getuserdetail3rd";
     /**
      * The constant GET_LOGIN_INFO.
      */
