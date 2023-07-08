@@ -238,7 +238,7 @@ public interface ProfitSharingV3Service {
    * @throws WxPayException the wx pay exception
    * @see <a href="https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_10.shtml">微信文档</a>
    */
-  ProfitSharingNotifyData getProfitSharingNotifyData(String notifyData, SignatureHeader header) throws WxPayException;
+  ProfitSharingNotifyResult getProfitSharingNotifyData(String notifyData, SignatureHeader header) throws WxPayException;
 
   /**
    * <pre>

@@ -12,13 +12,11 @@ import java.io.Serializable;
  * 分账动账通知解密后数据实体
  *
  * @author yuanbo
- * @create 2022-04-26-21:08 PM
+ * @since 2022-04-26-21:08 PM
  */
 @Data
 @NoArgsConstructor
 public class ProfitSharingNotifyResult implements Serializable {
-
-
   private static final long serialVersionUID = -2875006651351414624L;
 
   /**
