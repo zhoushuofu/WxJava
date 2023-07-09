@@ -1,6 +1,6 @@
 package com.github.binarywang.wxpay.service.impl;
 
-import com.github.binarywang.wxpay.bean.ecommerce.SignatureHeader;
+import com.github.binarywang.wxpay.bean.notify.SignatureHeader;
 import com.github.binarywang.wxpay.bean.profitsharingV3.*;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.ProfitSharingV3Service;
@@ -120,7 +120,7 @@ public class ProfitSharingV3ServiceImpl implements ProfitSharingV3Service {
   }
 
   @Override
-  public ProfitSharingNotifyResult getProfitSharingNotifyData(String notifyData, SignatureHeader header) throws WxPayException {
+  public ProfitSharingNotifyResult getProfitSharingNotifyResult(String notifyData, SignatureHeader header) throws WxPayException {
     ProfitSharingNotifyData response = parseNotifyData(notifyData, header);
     ProfitSharingNotifyData.Resource resource = response.getResource();
     String cipherText = resource.getCipherText();
@@ -170,7 +170,7 @@ public class ProfitSharingV3ServiceImpl implements ProfitSharingV3Service {
     if (verifier == null) {
       throw new WxPayException("证书检验对象为空");
     }
-    return verifier.verify(header.getSerialNo(),
-      beforeSign.getBytes(StandardCharsets.UTF_8), header.getSigned());
+    return verifier.verify(header.getSerial(),
+      beforeSign.getBytes(StandardCharsets.UTF_8), header.getSignature());
   }
 }
