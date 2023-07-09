@@ -1,7 +1,7 @@
 package com.github.binarywang.wxpay.service;
 
 import com.github.binarywang.wxpay.bean.notify.SignatureHeader;
-import com.github.binarywang.wxpay.bean.profitsharingV3.*;
+import com.github.binarywang.wxpay.bean.profitsharing.v3.*;
 import com.github.binarywang.wxpay.exception.WxPayException;
 
 /**
