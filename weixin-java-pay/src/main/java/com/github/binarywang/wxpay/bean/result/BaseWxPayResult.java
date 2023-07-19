@@ -59,11 +59,18 @@ public abstract class BaseWxPayResult {
    */
   @XStreamAlias("result_code")
   private String resultCode;
+
   /**
    * 错误代码.
    */
   @XStreamAlias("err_code")
   private String errCode;
+  /**
+   * 错误代码描述.
+   */
+  @XStreamAlias("err_code_des")
+  private String errCodeDes;
+
   /**
    * 错误代码.
    */
@@ -72,8 +79,9 @@ public abstract class BaseWxPayResult {
   /**
    * 错误代码描述.
    */
-  @XStreamAlias("err_code_des")
-  private String errCodeDes;
+  @XStreamAlias("error_message")
+  private String errorMessage;
+
   /**
    * 公众账号ID.
    */
