@@ -128,7 +128,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   @Getter
   private final BrandMerchantTransferService brandMerchantTransferService = new BrandMerchantTransferServiceImpl(this);
 
-  protected Map<String, WxPayConfig> configMap;
+  protected Map<String, WxPayConfig> configMap = new HashMap<>();
 
   @Override
   public WxPayConfig getConfig() {

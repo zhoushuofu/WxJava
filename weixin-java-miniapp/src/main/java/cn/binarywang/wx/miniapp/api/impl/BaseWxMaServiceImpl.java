@@ -90,7 +90,7 @@ public abstract class BaseWxMaServiceImpl<H, P> implements WxMaService, RequestH
 
   private final WxMaOpenApiService wxMaOpenApiService = new WxMaOpenApiServiceImpl(this);
 
-  private Map<String, WxMaConfig> configMap;
+  private Map<String, WxMaConfig> configMap = new HashMap<>();
   private int retrySleepMillis = 1000;
   private int maxRetryTimes = 5;
 
