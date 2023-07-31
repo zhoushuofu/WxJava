@@ -27,6 +27,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +133,7 @@ public abstract class BaseWxPayResult {
    * @return the string
    */
   public static String fenToYuan(Integer fen) {
-    return BigDecimal.valueOf(Double.valueOf(fen) / 100).setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+    return BigDecimal.valueOf(Double.valueOf(fen) / 100).setScale(2, RoundingMode.HALF_UP).toPlainString();
   }
 
   /**
@@ -387,7 +388,7 @@ public abstract class BaseWxPayResult {
           errorMsg.append("，错误详情：").append(getErrCodeDes());
         }
 
-        this.getLogger().error("\n结果业务代码异常，返回结果：{},\n{}", map, errorMsg.toString());
+        this.getLogger().error("\n结果业务代码异常，返回结果：{},\n{}", map, errorMsg);
         throw WxPayException.from(this);
       }
     }
