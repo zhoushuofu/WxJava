@@ -339,6 +339,7 @@ public class WxMaApiUrlConstants {
 
   public interface Scheme {
     String GENERATE_SCHEME_URL = "https://api.weixin.qq.com/wxa/generatescheme";
+    String GENERATE_NFC_SCHEME_URL = "https://api.weixin.qq.com/wxa/generatenfcscheme";
   }
 
   public interface Link {
