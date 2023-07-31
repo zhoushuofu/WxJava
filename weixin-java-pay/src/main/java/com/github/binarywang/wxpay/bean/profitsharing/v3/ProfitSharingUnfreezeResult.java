@@ -19,6 +19,16 @@ public class ProfitSharingUnfreezeResult implements Serializable {
 
   /**
    * <pre>
+   * 字段名：子商户号
+   * 是否必填：是
+   * 描述：微信支付分配的子商户号，即分账的出资商户号
+   * </pre>
+   */
+  @SerializedName("sub_mchid")
+  private String subMchid;
+
+  /**
+   * <pre>
    * 字段名：微信订单号
    * 是否必填：是
    * 描述：微信支付订单号
@@ -164,5 +174,15 @@ public class ProfitSharingUnfreezeResult implements Serializable {
      */
     @SerializedName("finish_time")
     private String finishTime;
+
+    /**
+     * <pre>
+     * 字段名：分账明细单号
+     * 是否必填：是
+     * 描述：微信分账明细单号，每笔分账业务执行的明细单号，可与资金账单对账使用
+     * </pre>
+     */
+    @SerializedName("detail_id")
+    private String detailId;
   }
 }
