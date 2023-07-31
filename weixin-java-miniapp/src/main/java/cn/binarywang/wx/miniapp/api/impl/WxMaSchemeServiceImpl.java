@@ -2,6 +2,7 @@ package cn.binarywang.wx.miniapp.api.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaSchemeService;
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.bean.scheme.WxMaGenerateNfcSchemeRequest;
 import cn.binarywang.wx.miniapp.bean.scheme.WxMaGenerateSchemeRequest;
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
@@ -47,7 +48,7 @@ public class WxMaSchemeServiceImpl implements WxMaSchemeService {
    * @throws WxErrorException 生成失败时抛出，具体错误码请看文档
    */
   @Override
-  public String generateNFC(WxMaGenerateSchemeRequest request) throws WxErrorException {
+  public String generateNFC(WxMaGenerateNfcSchemeRequest request) throws WxErrorException {
     String responseContent = this.wxMaService.post(GENERATE_NFC_SCHEME_URL, request.toJson());
     JsonObject jsonObject = GsonParser.parse(responseContent);
     if (jsonObject.get(WxConsts.ERR_CODE).getAsInt() != 0) {
