@@ -136,6 +136,22 @@ public class ProfitSharingV3ServiceImpl implements ProfitSharingV3Service {
   }
 
   @Override
+  public ProfitSharingPartnerNotifyResult getProfitSharingPartnerNotifyResult(String notifyData, SignatureHeader header) throws WxPayException {
+    ProfitSharingNotifyData response = parseNotifyData(notifyData, header);
+    ProfitSharingNotifyData.Resource resource = response.getResource();
+    String cipherText = resource.getCipherText();
+    String associatedData = resource.getAssociatedData();
+    String nonce = resource.getNonce();
+    String apiV3Key = this.payService.getConfig().getApiV3Key();
+    try {
+      String result = AesUtils.decryptToString(associatedData, nonce, cipherText, apiV3Key);
+      return GSON.fromJson(result, ProfitSharingPartnerNotifyResult.class);
+    } catch (GeneralSecurityException | IOException e) {
+      throw new WxPayException("解析报文异常！", e);
+    }
+  }
+
+  @Override
   public ProfitSharingBillResult getProfitSharingBill(ProfitSharingBillRequest request) throws WxPayException {
     String url = String.format("%s/v3/profitsharing/bills?bill_date=%s", this.payService.getPayBaseUrl(),
       request.getBillDate());
