@@ -542,4 +542,10 @@ public interface WxMaService extends WxService {
    * @return getWxMaOpenApiService
    */
   WxMaOpenApiService getWxMaOpenApiService();
+  /**
+   * 小程序短剧管理
+   *
+   * @return getWxMaVodService
+   */
+  WxMaVodService getWxMaVodService();
 }

@@ -89,6 +89,7 @@ public abstract class BaseWxMaServiceImpl<H, P> implements WxMaService, RequestH
   private final WxMaOrderShippingService wxMaOrderShippingService = new WxMaOrderShippingServiceImpl(this);
 
   private final WxMaOpenApiService wxMaOpenApiService = new WxMaOpenApiServiceImpl(this);
+  private final WxMaVodService wxMaVodService = new WxMaVodServiceImpl(this);
 
   private Map<String, WxMaConfig> configMap = new HashMap<>();
   private int retrySleepMillis = 1000;
@@ -664,4 +665,9 @@ public abstract class BaseWxMaServiceImpl<H, P> implements WxMaService, RequestH
   public WxMaOpenApiService getWxMaOpenApiService() {
     return this.wxMaOpenApiService;
   }
+  @Override
+  public WxMaVodService getWxMaVodService() {
+    return this.wxMaVodService;
+  }
+
 }

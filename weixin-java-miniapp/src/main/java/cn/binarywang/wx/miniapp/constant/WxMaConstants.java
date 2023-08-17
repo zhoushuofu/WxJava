@@ -181,4 +181,41 @@ public class WxMaConstants {
      */
     public static final String ZH_TW = "zh_TW";
   }
+
+  @UtilityClass
+  public static final class AuditStatus {
+    public static final int INVALID = 0;
+    public static final int ONGOING = 1;
+    public static final int REJECTED = 2;
+    public static final int APPROVED = 3;
+    public static final int RECOMMIT = 4;
+  }
+
+
+  @UtilityClass
+  public static final class ExpeditedType {
+
+    /**
+     * 非加急
+     */
+    public static final int NORMAL = 0;
+
+    /**
+     * 加急
+     */
+    public static final int HIGH_PRIORITY = 1;
+  }
+
+  @UtilityClass
+  public static final class UploadTaskType {
+    public static final int PULL_UPLOAD = 1;
+  }
+
+  @UtilityClass
+  public static final class UploadTaskStatus {
+    public static final int WAITING = 1;
+    public static final int WORKING = 2;
+    public static final int DONE = 3;
+    public static final int FAILED = 4;
+  }
 }

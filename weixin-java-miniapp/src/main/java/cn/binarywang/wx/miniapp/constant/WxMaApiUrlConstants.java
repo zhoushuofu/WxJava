@@ -830,4 +830,24 @@ public class WxMaApiUrlConstants {
     String SET_MSG_JUMP_PATH = "https://api.weixin.qq.com/wxa/sec/order/set_msg_jump_path";
 
   }
+
+  public interface Vod {
+    String LIST_MEDIA_URL = "https://api.weixin.qq.com/wxa/sec/vod/listmedia";
+    String GET_MEDIA_URL = "https://api.weixin.qq.com/wxa/sec/vod/getmedia";
+    String GET_MEDIA_LINK_URL = "https://api.weixin.qq.com/wxa/sec/vod/getmedialink";
+    String DELETE_MEDIA_URL = "https://api.weixin.qq.com/wxa/sec/vod/deletemedia";
+    String AUDIT_DRAMA_URL = "https://api.weixin.qq.com/wxa/sec/vod/auditdrama";
+    String LIST_DRAMAS_URL = "https://api.weixin.qq.com/wxa/sec/vod/listdramas";
+    String GET_DRAMA_URL = "https://api.weixin.qq.com/wxa/sec/vod/getdrama";
+    String SINGLE_FILE_UPLOAD_URL = "https://api.weixin.qq.com/wxa/sec/vod/singlefileupload";
+    String PULL_UPLOAD_URL = "https://api.weixin.qq.com/wxa/sec/vod/pullupload";
+    String GET_TASK_URL = "https://api.weixin.qq.com/wxa/sec/vod/gettask";
+    String APPLY_UPLOAD_URL = "https://api.weixin.qq.com/wxa/sec/vod/applyupload";
+    String UPLOAD_PART_URL = "https://api.weixin.qq.com/wxa/sec/vod/uploadpart";
+    String COMMIT_UPLOAD_URL = "https://api.weixin.qq.com/wxa/sec/vod/commitupload";
+    String GET_CDN_USAGE_DATA_URL = "https://api.weixin.qq.com/wxa/sec/vod/getcdnusagedata";
+    String GET_CDN_LOGS_URL = "https://api.weixin.qq.com/wxa/sec/vod/getcdnlogs";
+
+
+  }
 }
