@@ -121,6 +121,10 @@ public class ProfitSharingQueryResult extends BaseWxPayResult implements Seriali
      * 分账失败原因
      */
     private String failReason;
+    /**
+     * 分账明细单号
+     */
+    private String detailId;
 
     @Override
     public String toString() {
@@ -132,6 +136,7 @@ public class ProfitSharingQueryResult extends BaseWxPayResult implements Seriali
         ", result='" + result + '\'' +
         ", finishTime='" + finishTime + '\'' +
         ", failReason='" + failReason + '\'' +
+        ", detailId='" + detailId + '\'' +
         '}';
     }
   }

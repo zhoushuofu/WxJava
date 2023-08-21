@@ -112,7 +112,7 @@ public class ProfitSharingResult implements Serializable {
      * </pre>
      */
     @SerializedName("amount")
-    private Long amount;
+    private Integer amount;
 
     /**
      * <pre>

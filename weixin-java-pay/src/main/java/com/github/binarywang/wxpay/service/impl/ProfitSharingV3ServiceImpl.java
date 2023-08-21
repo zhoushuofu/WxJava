@@ -166,6 +166,34 @@ public class ProfitSharingV3ServiceImpl implements ProfitSharingV3Service {
     return GSON.fromJson(result, ProfitSharingBillResult.class);
   }
 
+  /**
+   * <pre>
+   * 请求分账查询API
+   *
+   * 发起分账请求后，可调用此接口查询分账结果
+   * 文档详见: https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_2.shtml
+   * 接口链接: https://api.mch.weixin.qq.com/v3/profitsharing/orders/{out_order_no}
+   *
+   * 注意：
+   * 发起解冻剩余资金请求后，可调用此接口查询解冻剩余资金的结果
+   * </pre>
+   *
+   * @param request {@link ProfitSharingQueryRequest} 针对某一笔分账订单的分账方法
+   * @return {@link ProfitSharingResult} 微信返回的分账查询结果
+   * @throws WxPayException the wx pay exception
+   * @see <a href="https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_2.shtml">微信文档</a>
+   */
+  @Override
+  public ProfitSharingResult profitSharingQuery(ProfitSharingQueryRequest request) throws WxPayException {
+    String url = String.format("%s/v3/profitsharing/orders/%s?transaction_id=%s", this.payService.getPayBaseUrl(),
+      request.getOutOrderNo(), request.getOutOrderNo());
+    if(StringUtils.isNotEmpty(request.getSubMchId())){
+      url += "&sub_mchid=" + request.getSubMchId();
+    }
+    String result = this.payService.getV3(url);
+    return GSON.fromJson(result, ProfitSharingResult.class);
+  }
+
   private ProfitSharingNotifyData parseNotifyData(String data, SignatureHeader header) throws WxPayException {
     if (Objects.nonNull(header) && !this.verifyNotifySign(header, data)) {
       throw new WxPayException("非法请求，头部信息验证失败");

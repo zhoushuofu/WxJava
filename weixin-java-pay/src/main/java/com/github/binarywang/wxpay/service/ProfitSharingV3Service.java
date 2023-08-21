@@ -274,4 +274,22 @@ public interface ProfitSharingV3Service {
    * @date 2022-12-09
    */
   ProfitSharingBillResult getProfitSharingBill(ProfitSharingBillRequest request) throws WxPayException;
+  /**
+   * <pre>
+   * 请求分账查询API
+   *
+   * 发起分账请求后，可调用此接口查询分账结果
+   * 文档详见: https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_2.shtml
+   * 接口链接: https://api.mch.weixin.qq.com/v3/profitsharing/orders/{out_order_no}
+   *
+   * 注意：
+   * 发起解冻剩余资金请求后，可调用此接口查询解冻剩余资金的结果
+   * </pre>
+   *
+   * @param request {@link ProfitSharingQueryRequest} 针对某一笔分账订单的分账方法
+   * @return {@link ProfitSharingResult} 微信返回的分账查询结果
+   * @throws WxPayException the wx pay exception
+   * @see <a href="https://pay.weixin.qq.com/wiki/doc/apiv3/apis/chapter8_1_2.shtml">微信文档</a>
+   */
+  ProfitSharingResult profitSharingQuery(ProfitSharingQueryRequest request) throws WxPayException;
 }
