@@ -75,9 +75,6 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   private final ProfitSharingService profitSharingService = new ProfitSharingServiceImpl(this);
 
   @Getter
-  private final ProfitSharingV3Service profitSharingV3Service = new ProfitSharingV3ServiceImpl(this);
-
-  @Getter
   private final RedpackService redpackService = new RedpackServiceImpl(this);
 
   @Getter
