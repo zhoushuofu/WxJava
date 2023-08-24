@@ -37,4 +37,5 @@ public class ShareCloudBaseEnvRequest implements Serializable {
     @SerializedName("appids")
     private List<String> appids;
   }
+
 }
