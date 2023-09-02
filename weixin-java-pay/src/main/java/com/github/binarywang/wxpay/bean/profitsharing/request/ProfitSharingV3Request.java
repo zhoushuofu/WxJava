@@ -129,6 +129,16 @@ public class ProfitSharingV3Request implements Serializable {
 
     /**
      * <pre>
+     * 字段名：分账金额
+     * 是否必填：是
+     * 描述： 分账金额，单位为分，只能为整数，不能超过原订单支付金额及最大分账比例金额
+     * </pre>
+     */
+    @SerializedName("amount")
+    private Integer amount;
+
+    /**
+     * <pre>
      * 字段名：分账个人接收方姓名
      * 是否必填：否
      * 描述：

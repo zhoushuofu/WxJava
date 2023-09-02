@@ -133,7 +133,7 @@ public class ProfitSharingResult extends BaseWxPayResult implements Serializable
      * </pre>
      */
     @SerializedName("amount")
-    private Long amount;
+    private Integer amount;
 
     /**
      * <pre>
