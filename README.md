@@ -178,17 +178,17 @@
 <summary>点击此处展开查看贡献次数最多的几位小伙伴</summary>
 
 1. [chanjarster (Daniel Qian)](https://github.com/chanjarster)
-1. [binarywang (Binary Wang)](https://github.com/binarywang)
-1. [007gzs](https://github.com/007gzs)
-1. [Silloy](https://github.com/silloy)
-1. [mgcnrx11](https://github.com/mgcnrx11)
-1. [0katekate0 (Wang_Wong)](https://github.com/0katekate0)
-1. [yuanqixun](https://github.com/yuanqixun)
-1. [kakotor](https://github.com/kakotor)
-1. [aimilin6688 (Jonk)](https://github.com/aimilin6688)
-1. [lkqm (Mario Luo)](https://github.com/lkqm)
-1. [kareanyi (MillerLin)](https://github.com/kareanyi)
-
+2. [binarywang (Binary Wang)](https://github.com/binarywang)
+3. [007gzs](https://github.com/007gzs)
+4. [Silloy](https://github.com/silloy)
+5. [mgcnrx11](https://github.com/mgcnrx11)
+6. [0katekate0 (Wang_Wong)](https://github.com/0katekate0)
+7. [yuanqixun](https://github.com/yuanqixun)
+8. [kakotor](https://github.com/kakotor)
+9. [aimilin6688 (Jonk)](https://github.com/aimilin6688)
+10. [lkqm (Mario Luo)](https://github.com/lkqm)
+11. [kareanyi (MillerLin)](https://github.com/kareanyi)
+12. [Bincent (Hongbin.hsu)](https://gitee.com/bincent)
 </details>
 
 ### GitHub Stargazers over time

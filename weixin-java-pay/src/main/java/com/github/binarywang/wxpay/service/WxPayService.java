@@ -1025,7 +1025,7 @@ public interface WxPayService {
    * @param sideLength 要生成的二维码的边长，如果为空，则取默认值400
    * @return 生成的二维码的字节数组 byte [ ]
    */
-  byte[] createScanPayQrcodeMode1(String productId, File logoFile, Integer sideLength);
+  byte[] createScanPayQrcodeMode1(String productId, File logoFile, Integer sideLength) throws Exception;
 
   /**
    * <pre>
@@ -1054,7 +1054,7 @@ public interface WxPayService {
    * @param sideLength 要生成的二维码的边长，如果为空，则取默认值400
    * @return 生成的二维码的字节数组 byte [ ]
    */
-  byte[] createScanPayQrcodeMode2(String codeUrl, File logoFile, Integer sideLength);
+  byte[] createScanPayQrcodeMode2(String codeUrl, File logoFile, Integer sideLength) throws Exception;
 
   /**
    * <pre>

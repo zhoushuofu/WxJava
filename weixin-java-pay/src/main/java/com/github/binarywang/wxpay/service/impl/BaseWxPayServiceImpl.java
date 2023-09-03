@@ -837,7 +837,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   }
 
   @Override
-  public byte[] createScanPayQrcodeMode1(String productId, File logoFile, Integer sideLength) {
+  public byte[] createScanPayQrcodeMode1(String productId, File logoFile, Integer sideLength) throws Exception {
     String content = this.createScanPayQrcodeMode1(productId);
     return this.createQrcode(content, logoFile, sideLength);
   }
@@ -867,11 +867,11 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   }
 
   @Override
-  public byte[] createScanPayQrcodeMode2(String codeUrl, File logoFile, Integer sideLength) {
+  public byte[] createScanPayQrcodeMode2(String codeUrl, File logoFile, Integer sideLength) throws Exception {
     return this.createQrcode(codeUrl, logoFile, sideLength);
   }
 
-  private byte[] createQrcode(String content, File logoFile, Integer sideLength) {
+  private byte[] createQrcode(String content, File logoFile, Integer sideLength) throws Exception {
     if (sideLength == null || sideLength < 1) {
       return QrcodeUtils.createQrcode(content, logoFile);
     }
