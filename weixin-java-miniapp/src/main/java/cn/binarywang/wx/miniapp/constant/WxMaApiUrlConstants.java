@@ -848,6 +848,28 @@ public class WxMaApiUrlConstants {
     String GET_CDN_USAGE_DATA_URL = "https://api.weixin.qq.com/wxa/sec/vod/getcdnusagedata";
     String GET_CDN_LOGS_URL = "https://api.weixin.qq.com/wxa/sec/vod/getcdnlogs";
 
+  }
+  /**
+   * 小程序虚拟支付服务相关接口
+   * <pre>
+   * 文档地址： https://developers.weixin.qq.com/miniprogram/dev/platform-capabilities/industry/virtual-payment.html#_2-3-%E6%9C%8D%E5%8A%A1%E5%99%A8API
+   * </pre>
+   */
+  public interface XPay {
+    String QUERY_USER_BALANCE_URL = "https://api.weixin.qq.com/xpay/query_user_balance?pay_sig=%s&signature=%s";
+    String CURRENCY_PAY_URL = "https://api.weixin.qq.com/xpay/currency_pay?pay_sig=%s&signature=%s";
+    String QUERY_ORDER_URL = "https://api.weixin.qq.com/xpay/query_order?pay_sig=%s";
+    String CANCEL_CURRENCY_PAY_URL = "https://api.weixin.qq.com/xpay/cancel_currency_pay?pay_sig=%s&signature=%s";
+    String NOTIFY_PROVIDE_GOODS_URL = "https://api.weixin.qq.com/xpay/notify_provide_goods?pay_sig=%s";
+    String PRESENT_CURRENCY_URL = "https://api.weixin.qq.com/xpay/present_currency?pay_sig=%s";
+    String DOWNLOAD_BILL_URL = "https://api.weixin.qq.com/xpay/download_bill?pay_sig=%s";
+    String REFUND_ORDER_URL = "https://api.weixin.qq.com/xpay/refund_order?pay_sig=%s";
+    String CREATE_WITHDRAW_ORDER_URL = "https://api.weixin.qq.com/xpay/create_withdraw_order?pay_sig=%s";
+    String QUERY_WITHDRAW_ORDER_URL = "https://api.weixin.qq.com/xpay/query_withdraw_order?pay_sig=%s";
+    String START_UPLOAD_GOODS_URL = "https://api.weixin.qq.com/xpay/start_upload_goods?pay_sig=%s";
+    String QUERY_UPLOAD_GOODS_URL = "https://api.weixin.qq.com/xpay/query_upload_goods?pay_sig=%s";
+    String START_PUBLISH_GOODS_URL = "https://api.weixin.qq.com/xpay/start_publish_goods?pay_sig=%s";
+    String QUERY_PUBLISH_GOODS_URL = "https://api.weixin.qq.com/xpay/query_publish_goods?pay_sig=%s";
 
   }
 }

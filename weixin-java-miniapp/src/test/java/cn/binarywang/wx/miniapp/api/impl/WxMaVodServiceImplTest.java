@@ -84,4 +84,46 @@ public class WxMaVodServiceImplTest {
     Integer response = this.wxService.getWxMaVodService().auditDrama(request);
     assertNotNull(response);
   }
+
+  @Test
+  public void testGetTask() throws Exception {
+    WxMaVodGetTaskRequest request = WxMaVodGetTaskRequest.builder()
+      .taskId(0)
+      .build();
+    WxMaVodGetTaskResponse response = this.wxService.getWxMaVodService().getTask(request);
+    assertNotNull(response);
+  }
+
+  @Test
+  public void testPullUpload() throws Exception {
+    WxMaVodPullUploadRequest request = WxMaVodPullUploadRequest.builder()
+      .coverUrl("")
+      .mediaUrl("")
+      .mediaName("我的中国梦 - 第1集")
+      .sourceContext("")
+      .build();
+    WxMaVodPullUploadResponse response = this.wxService.getWxMaVodService().pullUpload(request);
+    assertNotNull(response);
+  }
+  @Test
+  public void testGetCdnUsageData() throws Exception {
+    WxMaVodGetCdnUsageRequest request = WxMaVodGetCdnUsageRequest.builder()
+      .startTime(0L)
+      .endTime(0L)
+      .dataInterval(1440)
+      .build();
+    WxMaVodGetCdnUsageResponse response = this.wxService.getWxMaVodService().getCdnUsageData(request);
+    assertNotNull(response);
+  }
+
+  @Test
+  public void testGetCdnLogs() throws Exception {
+    WxMaVodGetCdnLogRequest request = WxMaVodGetCdnLogRequest.builder()
+      .startTime(0L).endTime(0L)
+      .offset(0).limit(100)
+      .build();
+    WxMaVodGetCdnLogResponse response = this.wxService.getWxMaVodService().getCdnLogs(request);
+    assertNotNull(response);
+  }
+
 }

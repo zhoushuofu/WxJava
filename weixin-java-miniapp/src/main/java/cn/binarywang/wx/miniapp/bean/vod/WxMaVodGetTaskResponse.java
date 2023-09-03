@@ -37,7 +37,7 @@ public class WxMaVodGetTaskResponse extends WxMaBaseResponse implements Serializ
     @SerializedName("create_time")
     private Long createTime;
     @SerializedName("finish_time")
-    private Long finish_time;
+    private Long finishTime;
     @SerializedName("media_id")
     private Integer mediaId;
 

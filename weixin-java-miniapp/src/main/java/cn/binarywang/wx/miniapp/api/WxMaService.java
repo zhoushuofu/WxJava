@@ -548,4 +548,10 @@ public interface WxMaService extends WxService {
    * @return getWxMaVodService
    */
   WxMaVodService getWxMaVodService();
+  /**
+   * 小程序虚拟支付
+   *
+   * @return getWxMaXPayService
+   */
+  WxMaXPayService getWxMaXPayService();
 }
