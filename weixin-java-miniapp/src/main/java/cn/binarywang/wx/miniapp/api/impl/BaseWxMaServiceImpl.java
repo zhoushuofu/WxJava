@@ -340,12 +340,13 @@ public abstract class BaseWxMaServiceImpl<H, P> implements WxMaService, RequestH
    * @throws WxErrorException 异常
    */
   protected String extractAccessToken(String resultContent) throws WxErrorException {
-    log.info("resultContent: " + resultContent);
+    log.debug("access-token response: {}", resultContent);
     WxMaConfig config = this.getWxMaConfig();
     WxError error = WxError.fromJson(resultContent, WxType.MiniApp);
     if (error.getErrorCode() != 0) {
       throw new WxErrorException(error);
     }
+
     WxAccessToken accessToken = WxAccessToken.fromJson(resultContent);
     config.updateAccessTokenProcessor(accessToken.getAccessToken(), accessToken.getExpiresIn());
     return accessToken.getAccessToken();
@@ -666,10 +667,12 @@ public abstract class BaseWxMaServiceImpl<H, P> implements WxMaService, RequestH
   public WxMaOpenApiService getWxMaOpenApiService() {
     return this.wxMaOpenApiService;
   }
+
   @Override
   public WxMaVodService getWxMaVodService() {
     return this.wxMaVodService;
   }
+
   @Override
   public WxMaXPayService getWxMaXPayService() {
     return this.wxMaXPayService;
