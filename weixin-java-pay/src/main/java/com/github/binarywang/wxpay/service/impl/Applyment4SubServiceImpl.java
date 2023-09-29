@@ -65,9 +65,9 @@ public class Applyment4SubServiceImpl implements Applyment4SubService {
   }
 
   @Override
-  public SettlementApplicationResult settlementApplication(String subMchid, String applicationNo) throws WxPayException {
+  public SettlementModifyStateQueryResult querySettlementModifyStatusByApplicationNo(String subMchid, String applicationNo) throws WxPayException {
     String url = String.format("%s/v3/apply4sub/sub_merchants/%s/application/%s", this.payService.getPayBaseUrl(), subMchid, applicationNo);
     String result = payService.getV3(url);
-    return GSON.fromJson(result, SettlementApplicationResult.class);
+    return GSON.fromJson(result, SettlementModifyStateQueryResult.class);
   }
 }

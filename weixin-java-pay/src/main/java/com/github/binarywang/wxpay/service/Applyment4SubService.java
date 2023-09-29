@@ -73,13 +73,16 @@ public interface Applyment4SubService {
 
   /**
    * 查询结算账户修改申请状态
-   * 文档详见：https://pay.weixin.qq.com/docs/partner/apis/modify-settlement/sub-merchants/get-application.html
-   * 接口链接：https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/{sub_mchid}/application/{application_no}
    *
-   * @param subMchid
-   * @param applicationNo
-   * @return
+   * @param subMchid      特约商户号
+   * @param applicationNo 修改结算账户申请单号
+   *
+   * @return {@link SettlementModifyStateQueryResult}
    * @throws WxPayException
+   * @apiNote <a href="https://pay.weixin.qq.com/docs/partner/apis/modify-settlement/sub-merchants/get-application.html">查询结算账户修改申请状态</a>
+   *
+   * <p>接口链接：https://api.mch.weixin.qq.com/v3/apply4sub/sub_merchants/{sub_mchid}/application/{applicationNo} </p>
    */
-  SettlementApplicationResult settlementApplication(String subMchid, String applicationNo) throws WxPayException;
+  SettlementModifyStateQueryResult querySettlementModifyStatusByApplicationNo(String subMchid, String applicationNo) throws WxPayException;
+
 }
