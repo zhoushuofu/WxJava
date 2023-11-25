@@ -171,24 +171,6 @@ public class WxPayConstants {
   }
 
   /**
-   * 账户类型
-   */
-  public static class AccountType {
-    /**
-     * BASIC：基本账户
-     */
-    public static final String BASIC = "BASIC";
-    /**
-     * OPERATION：运营账户
-     */
-    public static final String OPERATION = "OPERATION";
-    /**
-     * FEES：手续费账户
-     */
-    public static final String FEES = "FEES";
-  }
-
-  /**
    * 签名类型.
    */
   public static class SignType {

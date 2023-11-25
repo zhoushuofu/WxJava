@@ -971,7 +971,6 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
 
   @Override
   public WxPayFundFlowResult downloadFundFlow(String billDate, String accountType, String tarType) throws WxPayException {
-
     WxPayDownloadFundFlowRequest request = new WxPayDownloadFundFlowRequest();
     request.setBillDate(billDate);
     request.setAccountType(accountType);
