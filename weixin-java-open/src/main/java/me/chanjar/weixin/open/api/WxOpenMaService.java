@@ -277,17 +277,20 @@ public interface WxOpenMaService extends WxMaService {
 
   /**
    * 修改域名
-   *
+   * <a href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Mini_Program_Basic_Info/Server_Address_Configuration.html">文档地址</a>
    * @param action           delete删除, set覆盖, get获取
-   * @param requestDomains   the requestdomain list
-   * @param wsRequestDomains the wsrequestdomain list
-   * @param uploadDomains    the uploaddomain list
-   * @param downloadDomains  the downloaddomain list
+   * @param requestDomains   request 合法域名；当 action 是 get 时不需要此字段
+   * @param wsRequestDomains socket 合法域名；当 action 是 get 时不需要此字段
+   * @param uploadDomains    uploadFile 合法域名；当 action 是 get 时不需要此字段
+   * @param downloadDomains  downloadFile 合法域名；当 action 是 get 时不需要此字段
+   * @param tcpDomains tcp 合法域名；当 action 是 get 时不需要此字段
+   * @param udpDomains udp 合法域名；当 action 是 get 时不需要此字段
    * @return the wx open ma domain result
    * @throws WxErrorException the wx error exception
    */
   WxOpenMaDomainResult modifyDomain(String action, List<String> requestDomains, List<String> wsRequestDomains,
-                                    List<String> uploadDomains, List<String> downloadDomains) throws WxErrorException;
+                                    List<String> uploadDomains, List<String> downloadDomains,
+                                    List<String> udpDomains, List<String> tcpDomains) throws WxErrorException;
 
   /**
    * 获取小程序的业务域名
