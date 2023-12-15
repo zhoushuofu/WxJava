@@ -3,7 +3,7 @@ package me.chanjar.weixin.cp.api;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.cp.bean.WxCpOauth2UserInfo;
 import me.chanjar.weixin.cp.bean.WxCpUserDetail;
-import me.chanjar.weixin.cp.bean.workbench.WxCpSecondVerificatioInformation;
+import me.chanjar.weixin.cp.bean.workbench.WxCpSecondVerificationInfo;
 
 /**
  * <pre>
@@ -138,17 +138,13 @@ public interface WxCpOAuth2Service {
 
   /**
    * 获取用户二次验证信息
-   *
-   * https://qyapi.weixin.qq.com/cgi-bin/auth/get_tfa_info?access_token=ACCESS_TOKEN
-   *
-   * @author Hugo
-   * @date 2023/12/14 10:29
-   * @param code 用户进入二次验证页面时，企业微信颁发的code,每次成员授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期
-   * @return me.chanjar.weixin.cp.bean.workbench.WxCpSecondVerificatioInformation 二次验证授权码，开发者可以调用通过二次验证接口，解锁企业微信终端.tfa_code有效期五分钟，且只能使用一次。
-   *
+   * <p>
+   * api: https://qyapi.weixin.qq.com/cgi-bin/auth/get_tfa_info?access_token=ACCESS_TOKEN
    * 权限说明：仅『通讯录同步』或者自建应用可调用，如用自建应用调用，用户需要在二次验证范围和应用可见范围内。
-   *
    * 并发限制：20
+   *
+   * @param code 用户进入二次验证页面时，企业微信颁发的code,每次成员授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期
+   * @return me.chanjar.weixin.cp.bean.workbench.WxCpSecondVerificationInfo 二次验证授权码，开发者可以调用通过二次验证接口，解锁企业微信终端.tfa_code有效期五分钟，且只能使用一次。
    */
-  WxCpSecondVerificatioInformation get_tfa_info(String code) throws WxErrorException;
+  WxCpSecondVerificationInfo getTfaInfo(String code) throws WxErrorException;
 }
