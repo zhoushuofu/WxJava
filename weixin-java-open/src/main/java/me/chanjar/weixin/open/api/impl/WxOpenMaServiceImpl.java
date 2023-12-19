@@ -18,7 +18,7 @@ import me.chanjar.weixin.open.bean.ma.WxMaPrefetchDomain;
 import me.chanjar.weixin.open.bean.ma.WxMaQrcodeParam;
 import me.chanjar.weixin.open.bean.ma.WxMaScheme;
 import me.chanjar.weixin.open.bean.message.WxOpenMaSubmitAuditMessage;
-import me.chanjar.weixin.open.bean.message.WxOpenMaVerifybetaweappMessage;
+import me.chanjar.weixin.open.bean.message.WxOpenMaVerifyBetaWeappMessage;
 import me.chanjar.weixin.open.bean.result.*;
 import me.chanjar.weixin.open.executor.MaQrCodeRequestExecutor;
 
@@ -220,8 +220,8 @@ public class WxOpenMaServiceImpl extends WxMaServiceImpl implements WxOpenMaServ
   }
 
   @Override
-  public WxOpenResult verifybetaweapp(WxOpenMaVerifybetaweappMessage verifybetaweappMessage) throws WxErrorException {
-    String response = post(API_VERIFYBETAWEAPP, GSON.toJson(verifybetaweappMessage));
+  public WxOpenResult verifyBetaWeapp(WxOpenMaVerifyBetaWeappMessage verifyBetaWeappMessage) throws WxErrorException {
+    String response = post(API_VERIFY_BETA_WEAPP, GSON.toJson(verifyBetaWeappMessage));
     return WxMaGsonBuilder.create().fromJson(response, WxOpenResult.class);
   }
 

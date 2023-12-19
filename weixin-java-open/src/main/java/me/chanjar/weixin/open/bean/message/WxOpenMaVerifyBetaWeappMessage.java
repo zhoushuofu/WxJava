@@ -2,7 +2,7 @@ package me.chanjar.weixin.open.bean.message;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
-import me.chanjar.weixin.open.bean.ma.WxMaVerifybetaweappVerifyInfo;
+import me.chanjar.weixin.open.bean.ma.WxMaVerifyBetaWeappVerifyInfo;
 
 import java.io.Serializable;
 
@@ -13,12 +13,12 @@ import java.io.Serializable;
  * created on  2018/9/13
  */
 @Data
-public class WxOpenMaVerifybetaweappMessage implements Serializable {
+public class WxOpenMaVerifyBetaWeappMessage implements Serializable {
   private static final long serialVersionUID = 4595618023108631478L;
 
   /**
    * 企业法人认证需要的信息
    */
   @SerializedName("verify_info")
-  private WxMaVerifybetaweappVerifyInfo verifyInfo;
+  private WxMaVerifyBetaWeappVerifyInfo verifyInfo;
 }

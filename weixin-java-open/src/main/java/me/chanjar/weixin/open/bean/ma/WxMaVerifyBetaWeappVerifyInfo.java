@@ -12,7 +12,8 @@ import java.io.Serializable;
  * created on  2023/12/19
  */
 @Data
-public class WxMaVerifybetaweappVerifyInfo implements Serializable {
+public class WxMaVerifyBetaWeappVerifyInfo implements Serializable {
+  private static final long serialVersionUID = 2128265093276395400L;
 
   /**
    * 企业名（需与工商部门登记信息一致)；如果是“无主体名称个体工商户”则填“个体户+法人姓名”，例如“个体户张三”

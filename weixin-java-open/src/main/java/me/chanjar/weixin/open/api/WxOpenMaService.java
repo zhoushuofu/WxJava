@@ -6,7 +6,7 @@ import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.open.bean.ma.WxMaPrefetchDomain;
 import me.chanjar.weixin.open.bean.ma.WxMaScheme;
 import me.chanjar.weixin.open.bean.message.WxOpenMaSubmitAuditMessage;
-import me.chanjar.weixin.open.bean.message.WxOpenMaVerifybetaweappMessage;
+import me.chanjar.weixin.open.bean.message.WxOpenMaVerifyBetaWeappMessage;
 import me.chanjar.weixin.open.bean.result.*;
 
 import java.io.File;
@@ -116,7 +116,7 @@ public interface WxOpenMaService extends WxMaService {
   /**
    * 3. 试用小程序快速认证
    */
-  String API_VERIFYBETAWEAPP = "https://api.weixin.qq.com/wxa/verifybetaweapp";
+  String API_VERIFY_BETA_WEAPP = "https://api.weixin.qq.com/wxa/verifybetaweapp";
 
   /**
    * 4. 获取授权小程序帐号的可选类目
@@ -451,11 +451,11 @@ public interface WxOpenMaService extends WxMaService {
   /**
    * 试用小程序快速认证
    *
-   * @param verifybetaweappMessage the verify mini program message
+   * @param verifyBetaWeappMessage the verify mini program message
    * @return the wx open result
    * @throws WxErrorException the wx error exception
    */
-  WxOpenResult verifybetaweapp(WxOpenMaVerifybetaweappMessage verifybetaweappMessage) throws WxErrorException;
+  WxOpenResult verifyBetaWeapp(WxOpenMaVerifyBetaWeappMessage verifyBetaWeappMessage) throws WxErrorException;
 
   /**
    * 获取授权小程序帐号的可选类目
