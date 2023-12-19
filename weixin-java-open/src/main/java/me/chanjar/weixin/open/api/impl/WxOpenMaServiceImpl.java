@@ -18,6 +18,7 @@ import me.chanjar.weixin.open.bean.ma.WxMaPrefetchDomain;
 import me.chanjar.weixin.open.bean.ma.WxMaQrcodeParam;
 import me.chanjar.weixin.open.bean.ma.WxMaScheme;
 import me.chanjar.weixin.open.bean.message.WxOpenMaSubmitAuditMessage;
+import me.chanjar.weixin.open.bean.message.WxOpenMaVerifybetaweappMessage;
 import me.chanjar.weixin.open.bean.result.*;
 import me.chanjar.weixin.open.executor.MaQrCodeRequestExecutor;
 
@@ -216,6 +217,12 @@ public class WxOpenMaServiceImpl extends WxMaServiceImpl implements WxOpenMaServ
     qrcodeParam.addPageParam(params);
     WxMaService wxMaService = this;
     return wxMaService.execute(MaQrCodeRequestExecutor.create(getRequestHttp()), API_TEST_QRCODE, qrcodeParam);
+  }
+
+  @Override
+  public WxOpenResult verifybetaweapp(WxOpenMaVerifybetaweappMessage verifybetaweappMessage) throws WxErrorException {
+    String response = post(API_VERIFYBETAWEAPP, GSON.toJson(verifybetaweappMessage));
+    return WxMaGsonBuilder.create().fromJson(response, WxOpenResult.class);
   }
 
   @Override
