@@ -6,7 +6,6 @@ import cn.binarywang.wx.miniapp.bean.WxMaAuditMediaUploadResult;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaUploadAuthMaterialResult;
 import cn.binarywang.wx.miniapp.config.WxMaConfig;
-import cn.binarywang.wx.miniapp.executor.AuditMediaUploadRequestExecutor;
 import cn.binarywang.wx.miniapp.executor.UploadAuthMaterialRequestExecutor;
 import cn.binarywang.wx.miniapp.json.WxMaGsonBuilder;
 import com.google.gson.Gson;
