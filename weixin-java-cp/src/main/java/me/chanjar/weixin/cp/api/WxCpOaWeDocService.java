@@ -7,7 +7,7 @@ import me.chanjar.weixin.cp.bean.oa.doc.*;
 
 /**
  * 企业微信文档相关接口.
- * https://developer.work.weixin.qq.com/document/path/97392
+ * <a href="https://developer.work.weixin.qq.com/document/path/97392">文档</a>
  *
  * @author Hugo
  */
@@ -21,8 +21,7 @@ public interface WxCpOaWeDocService {
    * 请求地址: https://qyapi.weixin.qq.com/cgi-bin/wedoc/create_doc?access_token=ACCESS_TOKEN
    *
    * @param request 新建文档对应请求参数
-   * @return url 新建文档的访问链接
-   * @return docid  新建文档的docid
+   * @return url：新建文档的访问链接，docid：新建文档的docid
    * @throws WxErrorException the wx error exception
    */
   WxCpDocCreateData docCreate(@NonNull WxCpDocCreateRequest request) throws WxErrorException;
