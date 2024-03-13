@@ -321,4 +321,23 @@ public class WxCpOaServiceImplTest {
 
   }
 
+  @Test
+  public void testCreateOaApprovalTemplate() {
+    //TODO
+  }
+
+  @Test
+  public void testUpdateOaApprovalTemplate() {
+    //TODO
+  }
+
+  @Test
+  public void testGetCheckinScheduleList() {
+    //TODO
+  }
+
+  @Test
+  public void testAddCheckInUserFace() {
+    //TODO
+  }
 }

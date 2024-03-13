@@ -17,5 +17,5 @@ public class TemplateOptions implements Serializable {
 
   private String key;
 
-  private List<TemplateTitle> value;
+  private TemplateTitle value;
 }
