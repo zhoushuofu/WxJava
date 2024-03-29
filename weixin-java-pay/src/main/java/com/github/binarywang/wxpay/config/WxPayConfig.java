@@ -325,7 +325,7 @@ public class WxPayConfig {
     if (configContent != null) {
       inputStream = new ByteArrayInputStream(configContent);
     } else if (StringUtils.isNotEmpty(configString)) {
-      configContent = Base64.getDecoder().decode(configString);
+      configContent = configString.getBytes(StandardCharsets.UTF_8);
       inputStream = new ByteArrayInputStream(configContent);
     } else {
       if (StringUtils.isBlank(configPath)) {
