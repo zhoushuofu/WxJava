@@ -609,7 +609,7 @@ public class WxOpenComponentServiceImpl implements WxOpenComponentService {
 
   @Override
   public WxOpenHaveResult haveOpen() throws WxErrorException {
-    String json = post(GET_OPEN_URL, null);
+    String json = get(HAVE_OPEN_URL, "access_token");
     return WxOpenHaveResult.fromJson(json);
   }
 
