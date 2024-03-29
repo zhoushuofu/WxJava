@@ -263,6 +263,9 @@ public class WxPayConfig {
       throw new WxPayException("请确保apiV3Key值已设置");
     }
 
+    if(StringUtils.isNotBlank(this.getPrivateKeyString())){
+      this.setPrivateKeyString(Base64.getEncoder().encodeToString(this.getPrivateKeyString().getBytes()));
+    }
     InputStream keyInputStream = this.loadConfigInputStream(this.getPrivateKeyString(), this.getPrivateKeyPath(),
       this.privateKeyContent, "privateKeyPath");
     try {
