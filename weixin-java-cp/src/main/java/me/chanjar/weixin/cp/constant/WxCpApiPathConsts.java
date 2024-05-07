@@ -28,6 +28,10 @@ public interface WxCpApiPathConsts {
    */
   String GET_CALLBACK_IP = "/cgi-bin/getcallbackip";
   /**
+   * The constant GET_API_DOMAIN_IP.
+   */
+  String GET_API_DOMAIN_IP = "/cgi-bin/get_api_domain_ip";
+  /**
    * The constant BATCH_REPLACE_PARTY.
    */
   String BATCH_REPLACE_PARTY = "/cgi-bin/batch/replaceparty";
