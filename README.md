@@ -40,8 +40,8 @@
       </a>
     </td>
     <td align="right" valign="middle">
-      <a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=7makzf5h" target="_blank">
-        <img height="120" src="https://gitee.com/binary/weixin-java-tools/raw/develop/images/banners/aliyun.jpg" alt="aliyun ad">
+      <a href="https://www.iyque.cn/" target="_blank">
+        <img height="120" src="https://iyque-1251309172.cos.ap-nanjing.myqcloud.com/advert/wxjava.jpg" alt="aliyun ad">
       </a>
     </td>
   </tr>
