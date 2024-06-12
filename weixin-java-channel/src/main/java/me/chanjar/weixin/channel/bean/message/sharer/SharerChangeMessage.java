@@ -41,7 +41,8 @@ public class SharerChangeMessage extends WxChannelMessage {
    */
   @JsonProperty("bind_status")
   @JacksonXmlProperty(localName = "bind_status")
-  private String bindStatus;
+  private Integer bindStatus;
+
 
 
 }
