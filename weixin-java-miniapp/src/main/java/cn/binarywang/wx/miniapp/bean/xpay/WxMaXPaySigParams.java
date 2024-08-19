@@ -52,7 +52,7 @@ public class WxMaXPaySigParams implements Serializable {
     String ak = StringUtils.trimToEmpty(this.appKey);
     final String sigUri = convUrlToSigUri(url);
     final String paySig = calcPaySignature(sigUri, postBody, ak);
-    return paySig;
+    return paySig.toLowerCase();
   }
 
   public String calcSig(String postBody) {
