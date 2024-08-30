@@ -1,5 +1,6 @@
 package com.github.binarywang.wxpay.service.impl;
 
+import com.github.binarywang.wxpay.bean.notify.SignatureHeader;
 import com.github.binarywang.wxpay.bean.transfer.*;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.TransferService;
@@ -34,6 +35,11 @@ public class TransferServiceImpl implements TransferService {
     }
     String result = this.payService.postV3WithWechatpaySerial(url, GSON.toJson(request));
     return GSON.fromJson(result, TransferBatchesResult.class);
+  }
+
+  @Override
+  public TransferNotifyResult parseTransferNotifyResult(String notifyData, SignatureHeader header) throws WxPayException {
+    return this.payService.baseParseOrderNotifyV3Result(notifyData, header, TransferNotifyResult.class, TransferNotifyResult.DecryptNotifyResult.class);
   }
 
   @Override
