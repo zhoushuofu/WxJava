@@ -38,8 +38,15 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public QueryTransferBatchesResult transferBatchesBatchId(QueryTransferBatchesRequest request) throws WxPayException {
-    String url = String.format("%s/v3/transfer/batches/batch-id/%s?need_query_detail=%s&offset=%s&limit=%s&detail_status=%s",
-      this.payService.getPayBaseUrl(), request.getBatchId(), request.getNeedQueryDetail(), request.getOffset(), request.getLimit(), request.getDetailStatus());
+    String url;
+    if (request.getNeedQueryDetail()) {
+      url = String.format("%s/v3/transfer/batches/batch-id/%s?need_query_detail=true&offset=%s&limit=%s&detail_status=%s",
+        this.payService.getPayBaseUrl(), request.getBatchId(), request.getOffset(), request.getLimit(), request.getDetailStatus());
+    }
+    else {
+      url = String.format("%s/v3/transfer/batches/batch-id/%s?need_query_detail=false",
+        this.payService.getPayBaseUrl(), request.getBatchId());
+    }
     String result = this.payService.getV3(url);
     return GSON.fromJson(result, QueryTransferBatchesResult.class);
   }
@@ -53,8 +60,15 @@ public class TransferServiceImpl implements TransferService {
 
   @Override
   public QueryTransferBatchesResult transferBatchesOutBatchNo(QueryTransferBatchesRequest request) throws WxPayException {
-    String url = String.format("%s/v3/transfer/batches/out-batch-no/%s?need_query_detail=%s&offset=%s&limit=%s&detail_status=%s",
-      this.payService.getPayBaseUrl(), request.getOutBatchNo(), request.getNeedQueryDetail(), request.getOffset(), request.getLimit(), request.getDetailStatus());
+    String url;
+    if (request.getNeedQueryDetail()) {
+      url = String.format("%s/v3/transfer/batches/out-batch-no/%s?need_query_detail=true&offset=%s&limit=%s&detail_status=%s",
+        this.payService.getPayBaseUrl(), request.getOutBatchNo(), request.getOffset(), request.getLimit(), request.getDetailStatus());
+    }
+    else {
+      url = String.format("%s/v3/transfer/batches/out-batch-no/%s?need_query_detail=false",
+        this.payService.getPayBaseUrl(), request.getOutBatchNo());
+    }
     String result = this.payService.getV3(url);
     return GSON.fromJson(result, QueryTransferBatchesResult.class);
   }
