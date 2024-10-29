@@ -67,6 +67,8 @@ public class ApplymentStateQueryResult implements Serializable {
   @AllArgsConstructor
   @Accessors(chain = true)
   public static class AuditDetail implements Serializable {
+    private static final long serialVersionUID = 8006953382311911508L;
+
     /**
      * 字段名
      */
