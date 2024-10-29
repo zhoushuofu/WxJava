@@ -66,7 +66,7 @@ public class ApplymentStateQueryResult implements Serializable {
   @NoArgsConstructor
   @AllArgsConstructor
   @Accessors(chain = true)
-  public static class AuditDetail {
+  public static class AuditDetail implements Serializable {
     /**
      * 字段名
      */
