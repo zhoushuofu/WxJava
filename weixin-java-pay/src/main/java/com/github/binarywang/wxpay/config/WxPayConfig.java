@@ -279,15 +279,18 @@ public class WxPayConfig {
         if (StringUtils.isNotBlank(this.getPrivateKeyString())) {
           this.setPrivateKeyString(Base64.getEncoder().encodeToString(this.getPrivateKeyString().getBytes()));
         }
-        InputStream keyInputStream = this.loadConfigInputStream(this.getPrivateKeyString(), this.getPrivateKeyPath(),
-          this.privateKeyContent, "privateKeyPath");
-        merchantPrivateKey = PemUtils.loadPrivateKey(keyInputStream);
+
+        try (InputStream keyInputStream = this.loadConfigInputStream(this.getPrivateKeyString(), this.getPrivateKeyPath(),
+          this.privateKeyContent, "privateKeyPath")) {
+          merchantPrivateKey = PemUtils.loadPrivateKey(keyInputStream);
+        }
 
       }
       if (certificate == null && StringUtils.isBlank(this.getCertSerialNo())) {
-        InputStream certInputStream = this.loadConfigInputStream(this.getPrivateCertString(), this.getPrivateCertPath(),
-          this.privateCertContent, "privateCertPath");
-        certificate = PemUtils.loadCertificate(certInputStream);
+        try (InputStream certInputStream = this.loadConfigInputStream(this.getPrivateCertString(), this.getPrivateCertPath(),
+          this.privateCertContent, "privateCertPath")) {
+          certificate = PemUtils.loadCertificate(certInputStream);
+        }
         this.certSerialNo = certificate.getSerialNumber().toString(16).toUpperCase();
       }
 
