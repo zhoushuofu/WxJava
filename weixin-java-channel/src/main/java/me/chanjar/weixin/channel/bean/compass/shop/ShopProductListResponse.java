@@ -1,4 +1,4 @@
-package me.chanjar.weixin.channel.bean.category;
+package me.chanjar.weixin.channel.bean.compass.shop;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -8,18 +8,19 @@ import lombok.NoArgsConstructor;
 import me.chanjar.weixin.channel.bean.base.WxChannelBaseResponse;
 
 /**
- * 审核通过的分类和资质信息
+ * 商品列表 响应
  *
  * @author <a href="https://github.com/lixize">Zeyes</a>
  */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class PassCategoryResponse extends WxChannelBaseResponse {
+public class ShopProductListResponse extends WxChannelBaseResponse {
 
-  private static final long serialVersionUID = -3674591447273025743L;
+  private static final long serialVersionUID = -6328224902770141045L;
 
-  /** 类目和资质信息列表 */
-  @JsonProperty("list")
-  private List<PassCategoryInfo> list;
+  /** 商品列表 */
+  @JsonProperty("product_list")
+  private List<ShopProductInfo> productList;
+
 }

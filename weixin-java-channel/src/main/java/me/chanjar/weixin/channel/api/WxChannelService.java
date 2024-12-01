@@ -99,6 +99,20 @@ public interface WxChannelService extends BaseWxChannelService {
   WxStoreHomePageService getHomePageService();
 
   /**
+   * 合作账号服务
+   *
+   * @return 团长合作服务
+   */
+  WxStoreCooperationService getCooperationService();
+
+  /**
+   * 视频号/微信小店 罗盘商家版服务
+   *
+   * @return 罗盘商家版服务
+   */
+  WxChannelCompassShopService getCompassShopService();
+
+  /**
    * 优选联盟-团长合作达人管理服务
    *
    * @return 团长合作达人管理服务

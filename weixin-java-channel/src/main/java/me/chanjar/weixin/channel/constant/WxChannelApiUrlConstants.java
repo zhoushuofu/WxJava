@@ -316,6 +316,20 @@ public class WxChannelApiUrlConstants {
     String UNBIND_SHARER_URL = "https://api.weixin.qq.com/channels/ec/sharer/unbind";
   }
 
+  /** 合作账号相关接口 */
+  public interface Cooperation {
+    /** 获取合作账号列表 */
+    String LIST_COOPERATION_URL = "https://api.weixin.qq.com/channels/ec/cooperation/list";
+    /** 查看合作账号邀请状态 */
+    String GET_COOPERATION_STATUS_URL = "https://api.weixin.qq.com/channels/ec/cooperation/invitation/get";
+    /** 邀请合作账号 */
+    String GENERATE_QRCODE_COOPERATION_URL = "https://api.weixin.qq.com/channels/ec/cooperation/invitation/qrcode/generate";
+    /** 取消合作账号邀请 */
+    String CANCEL_COOPERATION_URL = "https://api.weixin.qq.com/channels/ec/cooperation/invitation/cancel";
+    /** 解绑合作账号 */
+    String UNBIND_COOPERATION_URL = "https://api.weixin.qq.com/channels/ec/cooperation/unbind";
+  }
+
   /** 资金相关接口 */
   public interface Fund {
 
@@ -324,9 +338,9 @@ public class WxChannelApiUrlConstants {
     /** 获取结算账户 */
     String GET_BANK_ACCOUNT_URL = "https://api.weixin.qq.com/channels/ec/funds/getbankacct";
     /** 获取资金流水详情 */
-    String GET_BALANCE_FLOW_DETAIL_URL = "https://api.weixin.qq.com/channels/ec/league/funds/getfundsflowdetail";
+    String GET_BALANCE_FLOW_DETAIL_URL = "https://api.weixin.qq.com/channels/ec/funds/getfundsflowdetail";
     /** 获取资金流水列表 */
-    String GET_BALANCE_FLOW_LIST_URL = "https://api.weixin.qq.com/channels/ec/league/funds/getfundsflowlist";
+    String GET_BALANCE_FLOW_LIST_URL = "https://api.weixin.qq.com/channels/ec/funds/getfundsflowlist";
     /** 获取提现记录 */
     String GET_WITHDRAW_DETAIL_URL = "https://api.weixin.qq.com/channels/ec/funds/getwithdrawdetail";
     /** 获取提现记录列表 */
@@ -525,5 +539,32 @@ public class WxChannelApiUrlConstants {
      * <a href="https://developers.weixin.qq.com/doc/channels/API/compass/finder/getfindersaleprofiledata.html">获取带货人群数据</a>
      */
     String GET_SALE_PROFILE_DATA_URL = "https://api.weixin.qq.com/channels/ec/compass/finder/sale/profile/data/get";
+  }
+
+  /**
+   * 罗盘商家版API
+   */
+  public interface CompassShop {
+
+    /** 获取电商数据概览 */
+    String GET_SHOP_OVERALL_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/overall/get";
+    /** 获取授权视频号列表 */
+    String FINDER_AUTH_LIST_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/finder/authorization/list/get";
+    /** 获取带货达人列表 */
+    String FINDER_LIST_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/finder/list/get";
+    /** 获取带货数据概览 */
+    String GET_FINDER_OVERALL_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/finder/overall/get";
+    /** 获取带货达人商品列表 */
+    String GET_FINDER_PRODUCT_LIST_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/finder/product/list/get";
+    /** 获取带货达人商品数据 */
+    String GET_FINDER_PRODUCT_OVERALL_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/finder/product/overall/get";
+    /** 获取店铺开播列表 */
+    String GET_LIVE_LIST_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/live/list/get";
+    /** 获取商品详细信息 */
+    String GET_SHOP_PRODUCT_DATA_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/product/data/get";
+    /** 获取商品列表 */
+    String GET_SHOP_PRODUCT_LIST_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/product/list/get";
+    /** 获取店铺人群数据 */
+    String GET_SHOP_SALE_PROFILE_DATA_URL = "https://api.weixin.qq.com/channels/ec/compass/shop/sale/profile/data/get";
   }
 }

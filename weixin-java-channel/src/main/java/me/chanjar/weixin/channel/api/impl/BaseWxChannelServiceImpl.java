@@ -48,6 +48,8 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   private final WxChannelSharerService sharerService = new WxChannelSharerServiceImpl(this);
   private final WxChannelFundService fundService = new WxChannelFundServiceImpl(this);
   private WxStoreHomePageService homePageService = null;
+  private WxStoreCooperationService cooperationService = null;
+  private WxChannelCompassShopService compassShopService = null;
   private WxLeagueWindowService leagueWindowService = null;
   private WxLeagueSupplierService leagueSupplierService = null;
   private WxLeaguePromoterService leaguePromoterService = null;
@@ -56,10 +58,8 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   private WxFinderLiveService finderLiveService = null;
   private WxAssistantService assistantService = null;
   private WxChannelVipService vipService = null;
-  private final WxChannelCompassFinderService compassFinderService =
-    new WxChannelCompassFinderServiceImpl(this);
-  private final WxChannelLiveDashboardService liveDashboardService =
-    new WxChannelLiveDashboardServiceImpl(this);
+  private WxChannelCompassFinderService compassFinderService = null;
+  private WxChannelLiveDashboardService liveDashboardService = null;
 
   protected WxChannelConfig config;
   private int retrySleepMillis = 1000;
@@ -377,6 +377,22 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
+  public synchronized WxStoreCooperationService getCooperationService() {
+    if (cooperationService == null) {
+      cooperationService = new WxStoreCooperationServiceImpl(this);
+    }
+    return cooperationService;
+  }
+
+  @Override
+  public synchronized WxChannelCompassShopService getCompassShopService() {
+    if (compassShopService == null) {
+      compassShopService = new WxChannelCompassShopServiceImpl(this);
+    }
+    return compassShopService;
+  }
+
+  @Override
   public synchronized WxLeagueWindowService getLeagueWindowService() {
     if (leagueWindowService == null) {
       leagueWindowService = new WxLeagueWindowServiceImpl(this);
@@ -409,7 +425,7 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
-  public WxLeadComponentService getLeadComponentService() {
+  public synchronized WxLeadComponentService getLeadComponentService() {
     if (leadComponentService == null) {
       leadComponentService = new WxLeadComponentServiceImpl(this);
     }
@@ -417,7 +433,7 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
-  public WxFinderLiveService getFinderLiveService() {
+  public synchronized WxFinderLiveService getFinderLiveService() {
     if (finderLiveService == null) {
       finderLiveService = new WxFinderLiveServiceImpl(this);
     }
@@ -425,7 +441,7 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
-  public WxAssistantService getAssistantService() {
+  public synchronized WxAssistantService getAssistantService() {
     if (assistantService == null) {
       assistantService = new WxAssistantServiceImpl(this) {
       };
@@ -434,7 +450,7 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
-  public WxChannelVipService getVipService() {
+  public synchronized WxChannelVipService getVipService() {
     if (vipService == null) {
       vipService = new WxChannelVipServiceImpl(this);
     }
@@ -442,9 +458,19 @@ public abstract class BaseWxChannelServiceImpl<H, P> implements WxChannelService
   }
 
   @Override
-  public WxChannelCompassFinderService getCompassFinderService() { return compassFinderService; }
+  public synchronized WxChannelCompassFinderService getCompassFinderService() {
+    if (compassFinderService == null) {
+      compassFinderService = new WxChannelCompassFinderServiceImpl(this);
+    }
+    return compassFinderService;
+  }
 
   @Override
-  public WxChannelLiveDashboardService getLiveDashboardService() { return liveDashboardService; }
+  public synchronized WxChannelLiveDashboardService getLiveDashboardService() {
+    if (liveDashboardService == null) {
+      liveDashboardService = new WxChannelLiveDashboardServiceImpl(this);
+    }
+    return liveDashboardService;
+  }
 
 }
