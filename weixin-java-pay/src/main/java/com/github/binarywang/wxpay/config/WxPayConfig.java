@@ -449,7 +449,7 @@ public class WxPayConfig {
    */
   private Object[] p12ToPem() {
     String key = getMchId();
-    if (StringUtils.isBlank(key)) {
+    if (StringUtils.isBlank(key) || StringUtils.isBlank(this.getKeyPath())) {
       return null;
     }
 
@@ -466,7 +466,7 @@ public class WxPayConfig {
       X509Certificate x509Certificate = (X509Certificate) certificate;
       return new Object[]{privateKey, x509Certificate};
     } catch (Exception e) {
-      log.error("加载证书时发生异常", e);
+      log.error("加载p12证书时发生异常", e);
     }
 
     return null;
