@@ -110,13 +110,13 @@ public class WxCpOaWeDriveServiceTest {
      */
     ArrayList<String> fileIds = Lists.newArrayList();
     fileIds.add(fileId);
-    WxCpBaseResp fileDelete = cpService.getOaWeDriveService().fileDelete(uId, fileIds);
+    WxCpBaseResp fileDelete = cpService.getOaWeDriveService().fileDelete(fileIds);
     log.info("删除文件数据为：{}", fileDelete.toJson());
 
     /**
      * 文件信息
      */
-    WxCpFileInfo fileInfo = cpService.getOaWeDriveService().fileInfo(uId, fileId);
+    WxCpFileInfo fileInfo = cpService.getOaWeDriveService().fileInfo(fileId);
     log.info("fileInfo数据为：{}", fileInfo.toJson());
 
     /**
@@ -134,7 +134,7 @@ public class WxCpOaWeDriveServiceTest {
     /**
      * 新建文件/微文档
      */
-    WxCpFileCreate fileCreate = cpService.getOaWeDriveService().fileCreate(uId, spId, spId, 3, "新建微文档1");
+    WxCpFileCreate fileCreate = cpService.getOaWeDriveService().fileCreate(spId, spId, 3, "新建微文档1");
     log.info("新建文件/微文档：{}", fileCreate.toJson());
 
     /**
