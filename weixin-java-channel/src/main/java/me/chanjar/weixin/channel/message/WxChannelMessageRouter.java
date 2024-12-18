@@ -178,7 +178,7 @@ public class WxChannelMessageRouter {
    * @param wxMessage 消息
    * @return 是否重复
    */
-  private boolean isMsgDuplicated(WxChannelMessage wxMessage) {
+  protected boolean isMsgDuplicated(WxChannelMessage wxMessage) {
     String messageId = this.generateMessageId(wxMessage);
     return this.messageDuplicateChecker.isDuplicate(messageId);
   }
@@ -188,7 +188,7 @@ public class WxChannelMessageRouter {
    *
    * @return 消息id
    */
-  private String generateMessageId(WxChannelMessage wxMessage) {
+  protected String generateMessageId(WxChannelMessage wxMessage) {
     StringBuilder sb = new StringBuilder();
     if (wxMessage.getMsgId() == null) {
       sb.append(wxMessage.getCreateTime())
