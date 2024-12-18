@@ -14,7 +14,6 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
-import java.util.Base64;
 import java.util.Optional;
 import javax.net.ssl.SSLContext;
 import lombok.Data;
@@ -295,10 +294,6 @@ public class WxPayConfig {
     }
     try {
       if (merchantPrivateKey == null) {
-        if (StringUtils.isNotBlank(this.getPrivateKeyString())) {
-          this.setPrivateKeyString(Base64.getEncoder().encodeToString(this.getPrivateKeyString().getBytes()));
-        }
-
         try (InputStream keyInputStream = this.loadConfigInputStream(this.getPrivateKeyString(), this.getPrivateKeyPath(),
           this.privateKeyContent, "privateKeyPath")) {
           merchantPrivateKey = PemUtils.loadPrivateKey(keyInputStream);
