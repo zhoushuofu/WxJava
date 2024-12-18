@@ -2,6 +2,7 @@ package me.chanjar.weixin.channel.bean.home.tree;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class LevelTreeInfo implements Serializable {
 
   /** 一级分类 */
-  @JsonProperty("level1")
-  private OneLevelTreeNode level1;
+  @JsonProperty("level_1")
+  private List<OneLevelTreeNode> level1;
 
 }

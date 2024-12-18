@@ -1,6 +1,7 @@
 package me.chanjar.weixin.channel.bean.home.tree;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class OneLevelTreeNode extends CatTreeNode {
 
   /** 二级分类 */
-  @JsonProperty("level2")
-  private CatTreeNode level2;
+  @JsonProperty("level_2")
+  private List<CatTreeNode> level2;
 
 }
