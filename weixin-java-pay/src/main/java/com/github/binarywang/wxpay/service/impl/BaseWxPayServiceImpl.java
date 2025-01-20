@@ -14,7 +14,6 @@ import com.github.binarywang.wxpay.bean.result.enums.TradeTypeEnum;
 import com.github.binarywang.wxpay.bean.transfer.TransferBillsNotifyResult;
 import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.config.WxPayConfigHolder;
-import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.constant.WxPayConstants.SignType;
 import com.github.binarywang.wxpay.constant.WxPayConstants.TradeType;
 import com.github.binarywang.wxpay.exception.WxPayException;
@@ -46,6 +45,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.ZipException;
 
 import static com.github.binarywang.wxpay.constant.WxPayConstants.QUERY_COMMENT_DATE_FORMAT;
@@ -122,7 +122,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   private final PartnerPayScoreService partnerPayScoreService = new PartnerPayScoreServiceImpl(this);
 
   @Getter
-  private final PartnerPayScoreSignPlanService partnerPayScoreSignPlanService=new PartnerPayScoreSignPlanServiceImpl(this);
+  private final PartnerPayScoreSignPlanService partnerPayScoreSignPlanService = new PartnerPayScoreSignPlanServiceImpl(this);
 
   @Getter
   private final MerchantTransferService merchantTransferService = new MerchantTransferServiceImpl(this);
@@ -130,7 +130,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   @Getter
   private final BrandMerchantTransferService brandMerchantTransferService = new BrandMerchantTransferServiceImpl(this);
 
-  protected Map<String, WxPayConfig> configMap = new HashMap<>();
+  protected Map<String, WxPayConfig> configMap = new ConcurrentHashMap<>();
 
   @Override
   public WxPayConfig getConfig() {
@@ -143,38 +143,37 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
 
   @Override
   public void setConfig(WxPayConfig config) {
-    final String defaultMchId = config.getMchId();
-    this.setMultiConfig(ImmutableMap.of(defaultMchId, config), defaultMchId);
+    final String defaultKey = this.getConfigKey(config.getMchId(), config.getAppId());
+    this.setMultiConfig(ImmutableMap.of(defaultKey, config), defaultKey);
   }
 
   @Override
-  public void addConfig(String mchId, WxPayConfig wxPayConfig) {
+  public void addConfig(String mchId, String appId, WxPayConfig wxPayConfig) {
     synchronized (this) {
       if (this.configMap == null) {
         this.setConfig(wxPayConfig);
       } else {
-        WxPayConfigHolder.set(mchId);
-        this.configMap.put(mchId, wxPayConfig);
+        String configKey = this.getConfigKey(mchId, appId);
+        WxPayConfigHolder.set(configKey);
+        this.configMap.put(configKey, wxPayConfig);
       }
     }
   }
 
   @Override
-  public void removeConfig(String mchId) {
+  public void removeConfig(String mchId, String appId) {
     synchronized (this) {
-      if (this.configMap.size() == 1) {
-        this.configMap.remove(mchId);
-        log.warn("已删除最后一个商户号配置：{}，须立即使用setConfig或setMultiConfig添加配置", mchId);
+      String configKey = this.getConfigKey(mchId, appId);
+      this.configMap.remove(configKey);
+      if (this.configMap.isEmpty()) {
+        log.warn("已删除最后一个商户号配置：mchId[{}],appid[{}]，须立即使用setConfig或setMultiConfig添加配置", mchId, appId);
         return;
       }
-      if (WxPayConfigHolder.get().equals(mchId)) {
-        this.configMap.remove(mchId);
-        final String defaultMpId = this.configMap.keySet().iterator().next();
-        WxPayConfigHolder.set(defaultMpId);
-        log.warn("已删除默认商户号配置，商户号【{}】被设为默认配置", defaultMpId);
-        return;
+      if (WxPayConfigHolder.get().equals(configKey)) {
+        final String nextConfigKey = this.configMap.keySet().iterator().next();
+        WxPayConfigHolder.set(nextConfigKey);
+        log.warn("已删除默认商户号配置，商户号【{}】被设为默认配置", nextConfigKey);
       }
-      this.configMap.remove(mchId);
     }
   }
 
@@ -184,28 +183,34 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   }
 
   @Override
-  public void setMultiConfig(Map<String, WxPayConfig> wxPayConfigs, String defaultMchId) {
+  public void setMultiConfig(Map<String, WxPayConfig> wxPayConfigs, String defaultConfigKey) {
     this.configMap = Maps.newHashMap(wxPayConfigs);
-    WxPayConfigHolder.set(defaultMchId);
+    WxPayConfigHolder.set(defaultConfigKey);
   }
 
   @Override
-  public boolean switchover(String mchId) {
-    if (this.configMap.containsKey(mchId)) {
-      WxPayConfigHolder.set(mchId);
+  public boolean switchover(String mchId, String appId) {
+    String configKey = this.getConfigKey(mchId, appId);
+    if (this.configMap.containsKey(configKey)) {
+      WxPayConfigHolder.set(configKey);
       return true;
     }
-    log.error("无法找到对应【{}】的商户号配置信息，请核实！", mchId);
+    log.error("无法找到对应mchId=【{}】,appId=【{}】的商户号配置信息，请核实！", mchId, appId);
     return false;
   }
 
   @Override
-  public WxPayService switchoverTo(String mchId) {
-    if (this.configMap.containsKey(mchId)) {
-      WxPayConfigHolder.set(mchId);
+  public WxPayService switchoverTo(String mchId, String appId) {
+    String configKey = this.getConfigKey(mchId, appId);
+    if (this.configMap.containsKey(configKey)) {
+      WxPayConfigHolder.set(configKey);
       return this;
     }
-    throw new WxRuntimeException(String.format("无法找到对应【%s】的商户号配置信息，请核实！", mchId));
+    throw new WxRuntimeException(String.format("无法找到对应mchId=【%s】,appId=【%s】的商户号配置信息，请核实！", mchId, appId));
+  }
+
+  private String getConfigKey(String mchId, String appId) {
+    return mchId + "_" + appId;
   }
 
   @Override
@@ -302,7 +307,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
 
   @Override
   public WxPayRefundQueryV3Result refundPartnerQueryV3(WxPayRefundQueryV3Request request) throws WxPayException {
-    String url = String.format("%s/v3/refund/domestic/refunds/%s?sub_mchid=%s", this.getPayBaseUrl(), request.getOutRefundNo(),request.getSubMchid());
+    String url = String.format("%s/v3/refund/domestic/refunds/%s?sub_mchid=%s", this.getPayBaseUrl(), request.getOutRefundNo(), request.getSubMchid());
     String response = this.getV3(url);
     return GSON.fromJson(response, WxPayRefundQueryV3Result.class);
   }
@@ -324,7 +329,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
         } else if (configMap.get(result.getMchId()).getSignType() != null) {
           // 如果配置中signType有值，则使用它进行验签
           signType = configMap.get(result.getMchId()).getSignType();
-          this.switchover(result.getMchId());
+          this.switchover(result.getMchId(), result.getAppid());
         }
       }
 
@@ -347,7 +352,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
    */
   private boolean verifyNotifySign(SignatureHeader header, String data) throws WxSignTestException {
     String wxPaySign = header.getSignature();
-    if(wxPaySign.startsWith("WECHATPAY/SIGNTEST/")){
+    if (wxPaySign.startsWith("WECHATPAY/SIGNTEST/")) {
       throw new WxSignTestException("微信支付签名探测流量");
     }
     String beforeSign = String.format("%s\n%s\n%s\n",
@@ -421,7 +426,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
       WxPayRefundNotifyResult result;
       if (XmlConfig.fastMode) {
         result = BaseWxPayResult.fromXML(xmlData, WxPayRefundNotifyResult.class);
-        this.switchover(result.getMchId());
+        this.switchover(result.getMchId(), result.getAppid());
         result.decryptReqInfo(this.getConfig().getMchKey());
       } else {
         result = WxPayRefundNotifyResult.fromXML(xmlData, this.getConfig().getMchKey());
@@ -458,7 +463,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
     try {
       log.debug("扫码支付回调通知请求参数：{}", xmlData);
       WxScanPayNotifyResult result = BaseWxPayResult.fromXML(xmlData, WxScanPayNotifyResult.class);
-      this.switchover(result.getMchId());
+      this.switchover(result.getMchId(), result.getAppid());
       log.debug("扫码支付回调通知解析后的对象：{}", result);
       result.checkResult(this, this.getConfig().getSignType(), false);
       return result;
@@ -1306,7 +1311,7 @@ public abstract class BaseWxPayServiceImpl implements WxPayService {
   @Override
   public WxPayFaceAuthInfoResult getWxPayFaceAuthInfo(WxPayFaceAuthInfoRequest request) throws WxPayException {
     if (StringUtils.isEmpty(request.getSignType())) {
-      request.setSignType(WxPayConstants.SignType.MD5);
+      request.setSignType(SignType.MD5);
     }
 
     request.checkAndSign(this.getConfig());
