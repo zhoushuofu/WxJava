@@ -87,4 +87,19 @@ public class TransferServiceImplTest {
       .userName("测试用户").build();
     log.info("发起商家转账:{}", this.payService.getTransferService().transferBills(transferBillsRequest));
   }
+
+  @Test
+  public void testTransformBillsCancel() throws WxPayException {
+    log.info("撤销商家转账:{}", this.payService.getTransferService().transformBillsCancel("123456"));
+  }
+
+  @Test
+  public void testGetBillsByOutBillNo() throws WxPayException {
+    log.info("商户单号查询转账单：{}", this.payService.getTransferService().getBillsByOutBillNo("123456"));
+  }
+
+  @Test
+  public void testGetBillsByTransferBillNo() throws WxPayException {
+    log.info("微信单号查询转账单：{}", this.payService.getTransferService().getBillsByTransferBillNo("123456"));
+  }
 }

@@ -1,5 +1,6 @@
 package com.github.binarywang.wxpay.bean.transfer;
 
+import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,9 +38,11 @@ public class TransferBillsResult implements Serializable {
 
   /**
    * 单据状态
+   *
+   * @see WxPayConstants.TransformBillState
    */
-  @SerializedName("status")
-  private String status;
+  @SerializedName("state")
+  private String state;
 
   /**
    * 失败原因

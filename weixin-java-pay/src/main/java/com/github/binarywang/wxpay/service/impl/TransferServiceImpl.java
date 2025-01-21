@@ -48,8 +48,7 @@ public class TransferServiceImpl implements TransferService {
     if (request.getNeedQueryDetail()) {
       url = String.format("%s/v3/transfer/batches/batch-id/%s?need_query_detail=true&offset=%s&limit=%s&detail_status=%s",
         this.payService.getPayBaseUrl(), request.getBatchId(), request.getOffset(), request.getLimit(), request.getDetailStatus());
-    }
-    else {
+    } else {
       url = String.format("%s/v3/transfer/batches/batch-id/%s?need_query_detail=false",
         this.payService.getPayBaseUrl(), request.getBatchId());
     }
@@ -70,8 +69,7 @@ public class TransferServiceImpl implements TransferService {
     if (request.getNeedQueryDetail()) {
       url = String.format("%s/v3/transfer/batches/out-batch-no/%s?need_query_detail=true&offset=%s&limit=%s&detail_status=%s",
         this.payService.getPayBaseUrl(), request.getOutBatchNo(), request.getOffset(), request.getLimit(), request.getDetailStatus());
-    }
-    else {
+    } else {
       url = String.format("%s/v3/transfer/batches/out-batch-no/%s?need_query_detail=false",
         this.payService.getPayBaseUrl(), request.getOutBatchNo());
     }
@@ -95,6 +93,31 @@ public class TransferServiceImpl implements TransferService {
     }
     String result = this.payService.postV3WithWechatpaySerial(url, GSON.toJson(request));
     return GSON.fromJson(result, TransferBillsResult.class);
+  }
+
+  @Override
+  public TransferBillsCancelResult transformBillsCancel(String outBillNo) throws WxPayException {
+    String url = String.format("%s/v3/fund-app/mch-transfer/transfer-bills/out-bill-no/%s/cancel",
+      this.payService.getPayBaseUrl(), outBillNo);
+    String result = this.payService.postV3(url, "");
+
+    return GSON.fromJson(result, TransferBillsCancelResult.class);
+  }
+
+  @Override
+  public TransferBillsGetResult getBillsByOutBillNo(String outBillNo) throws WxPayException {
+    String url = String.format("%s/v3/fund-app/mch-transfer/transfer-bills/out-bill-no/%s",
+      this.payService.getPayBaseUrl(), outBillNo);
+    String result = this.payService.getV3(url);
+    return GSON.fromJson(result, TransferBillsGetResult.class);
+  }
+
+  @Override
+  public TransferBillsGetResult getBillsByTransferBillNo(String transferBillNo) throws WxPayException {
+    String url = String.format("%s/v3/fund-app/mch-transfer/transfer-bills/transfer-bill-no/%s",
+      this.payService.getPayBaseUrl(), transferBillNo);
+    String result = this.payService.getV3(url);
+    return GSON.fromJson(result, TransferBillsGetResult.class);
   }
 
   @Override
